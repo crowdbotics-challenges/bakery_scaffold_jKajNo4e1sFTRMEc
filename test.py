@@ -32,7 +32,8 @@ class TestAcceptanceStripe(unittest.TestCase):
     def test_acceptance_checkout_button_was_instantiated(self):
         """Check if checkout button was captured."""
         pattern = re.compile(
-            r"document.getElementById\('checkout-button-sku_'\);", re.I | re.M)
+            r"document.getElementById\('checkout-button-sku_\w{14}'\);", re.I | re.M
+        )
         res = re.search(pattern, self.dom_str)
         self.assertTrue(hasattr(res, 'group'),
                         msg="You didn't add a checkout button.")
@@ -87,7 +88,9 @@ class AssessmentTestCases(unittest.TestCase):
         self.driver = webdriver.Chrome(os.getenv('CHROMEDRIVER_PATH'), options=options)
 
     def _get_button_id(self):
-        pattern = re.compile(r"\('checkout-button-sku_'\);", re.I | re.M)
+        pattern = re.compile(
+            r"\('checkout-button-sku_\w{14}'\);", re.I | re.M
+        )
         res = re.search(pattern, self.dom_str)
         return res.group().split("'")[1]
 
