@@ -9,6 +9,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
+
 class TestAcceptanceStripe(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TestAcceptanceStripe, self).__init__(*args, **kwargs)
@@ -143,6 +144,17 @@ class AssessmentTestCases(unittest.TestCase):
 
     def tearDown(self):
         self.driver.close()
+
+
+    
+
+class TestSubmission(unittest.TestCase):
+    def __init__(self, *args, **kwargs):
+        super(TestSubmission, self).__init__(*args, **kwargs)
+        with open('order.html', 'r') as file_descriptor:
+            self.dom_str = file_descriptor.read()
+
+    
 
 
 if __name__ == "__main__":
